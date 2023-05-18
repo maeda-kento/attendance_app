@@ -13,7 +13,7 @@ development:
   <<: *default
   username: root
   password: password
-  database: sample_app_development
+  database: attendance_app_development
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -23,9 +23,10 @@ test:
   <<: *default
   username: root
   password: password
-  database: sample_app_test
+  database: attendance_app_test
   host: localhost
 
 production:
   <<: *default
   database: db/production.mysql2
+  database: attendance_app_production
