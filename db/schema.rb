@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20230518030001) do
     t.string "password_digest", null: false
     t.integer "hourly_pay", default: 0, null: false
     t.date "birthed_on", null: false
+    t.integer "gender", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["department_id"], name: "index_staffs_on_department_id"

@@ -8,6 +8,7 @@ class CreateStaffs < ActiveRecord::Migration[5.1]
       t.string :password_digest, null: false
       t.integer :hourly_pay, null: false, default: 0
       t.date :birthed_on, null: false
+      t.integer :gender, null: false, default: 0
 
       t.timestamps
     end
