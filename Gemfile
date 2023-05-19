@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails',        '5.1.6'
+gem 'rails-i18n'
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcrypt'
 gem 'faker',          '1.7.3'
 gem  'gimei'

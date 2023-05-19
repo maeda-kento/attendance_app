@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      staff: スタッフ
+    attributes:
+      staff:
+        last_name: 姓
+        first_name: 名
+        password_digest: パスワード
+        email: メール
+        gender: 性別
+        hourly_pay: 給料
+        birthed_on: 生年月日
+  attributes:
+    created_at: 作成日時
+    updated_at: 更新日時

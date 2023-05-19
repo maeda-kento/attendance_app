@@ -11,8 +11,8 @@ class Staff < ApplicationRecord
 
   validates :last_name, presence: true, length: { maximum: 10 }
   validates :first_name, presence: true, length: { maximum: 10 }
-  validates :password_digest, format:{ with: VALID_PASSWORD_REGEX } presence: true, length: { minimum: 8 maximum: 12 }
-  validates :houly_pay, presence: true, length: { maximum: 9999 }
+  validates :password_digest, format:{ with: VALID_PASSWORD_REGEX }, presence: true, length: { minimum: 8, maximum: 12 }
+  validates :hourly_pay, presence: true, length: { maximum: 9999 }
   validates :email, format:{ with: VALID_EMAIL_REGEX }, presence: true
   validates :gender, inclusion: { in: Staff.genders.keys }
 end
