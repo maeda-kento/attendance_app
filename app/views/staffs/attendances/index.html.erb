@@ -1,0 +1,23 @@
+<h1 class="text-white bg-dark" class="m-10">勤怠管理</h1>
+<table class="table">
+<thead>
+  <tr>
+    <th>勤務日</th>
+    <th>出勤</th>
+    <th>休憩入</th>
+    <th>休憩出</th>
+    <th>退勤</th>
+  </tr>
+</thead>
+<tbody>
+  <% @attendances.each do |attendance| %>
+    <tr>
+    <td><%= attendance.worked_on %></td>
+    <td><%= attendance.started_at %></td>
+    <td><%= attendance.break_started_at %></td>
+    <td><%= attendance.break_finished_at %></td>
+    <td><%= attendance.finished_at %></td>
+    </tr>
+  <% end %>
+<tbody>
+</table>

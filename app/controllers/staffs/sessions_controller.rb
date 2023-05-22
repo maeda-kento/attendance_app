@@ -4,8 +4,8 @@ class Staffs::SessionsController < ApplicationController
   end
 
   def create
-    staff = Staff.find_by(email: params[:session][:email].downcase)
-    if staff && staff.authenticate(params[:session][:password])
+    staff = Staff.find_by(email: params[:email].downcase)
+    if staff && staff.authenticate(params[:password])
       sign_in staff
       redirect_to staffs_tops_url
     else

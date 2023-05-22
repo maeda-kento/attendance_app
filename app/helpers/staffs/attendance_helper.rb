@@ -1,0 +1,2 @@
+module Staffs::AttendanceHelper
+end

@@ -2,6 +2,7 @@
 <h1 class="text-white bg-dark">勤怠アプリ</h1>
 </header>
 <body>
+  <div class="container">
   <%# <%= form_for(:session, url: staffs_sign_in_path) do |f| %>
     <%#<%= f.label :email %>
     <%#<%= f.email_field :email %>
@@ -9,20 +10,26 @@
     <%#<%= f.password_field :password %>
     <%#<%= f.submit "sign in" %>
   <%#<% end %>
-  <form>
-    <div class="d-flex align-items-center justify-content-center" style="height:300px;">
-      <div class="border col-5">
-        <h1>スタッフログイン</h1>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">メールアドレス</label>
-          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    <div class="row bg-info">
+      <div class="col-12 col-lg-6">
+        <%= form_with url: staffs_sign_in_path, local: false, data: { remote: false } do |f| %>
+          <h1 class="text-center">スタッフログイン</h1>
+          <div class="mb-3">
+            <%= f.label :email, "メールアドレス", class: "form-label" %>
+            <%= f.email_field :email, class: "form-control", id: :email, placeholder: "name@example.com" %>
           </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">パスワード</label>
-          <input type="password" class="form-control" id="exampleFormControlInput1">
-        </div>
-        <button type="submit" class="btn btn-primary btn-lg">ログイン</button>
+          <div class="mb-3">
+            <%= f.label :password, "パスワード", class: "form-label" %>
+            <%= f.password_field :password, class: "form-control", id: :password %>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" class="mw-100" >ログイン</button>
+        <% end %>
       </div>
     </div>
-  </form>
+  
+<%# <%= tag.div class: ["border col-5", true ? 1 : 2], id: @id %>
+
+  <%# <div class="border col-5 <%= true ? 1 : 2" id="<%= @id"> %>
+  <%# </div> %>
+  </div>
 </body>

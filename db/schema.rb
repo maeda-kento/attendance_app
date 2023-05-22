@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230518030001) do
+ActiveRecord::Schema.define(version: 20230522001427) do
+
+  create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date "worked_on", null: false
+    t.time "started_at"
+    t.time "finished_at"
+    t.time "break_started_at"
+    t.time "break_finished_at"
+    t.bigint "staff_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["staff_id"], name: "index_attendances_on_staff_id"
+  end
 
   create_table "departments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
@@ -33,5 +45,6 @@ ActiveRecord::Schema.define(version: 20230518030001) do
     t.index ["email"], name: "index_staffs_on_email", unique: true
   end
 
+  add_foreign_key "attendances", "staffs"
   add_foreign_key "staffs", "departments"
 end

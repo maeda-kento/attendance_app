@@ -15,10 +15,18 @@ end
     last_name: gimei.last.kanji,
     birthed_on: birthed_on,
     gender: gender,
-    email: email, 
+    email: "example#{n+1}@example.com", 
     password: "1234rewq", 
     password_confirmation: "1234rewq",
     department_id: Random.rand(1..4)
+    
   )
+  (Date.today.beginning_of_month..Date.today.end_of_month).each do |worked_on|
+    Attendance.create!(
+      worked_on: worked_on,
+      staff_id: n + 1
+    )
+  end
 end
+
 
