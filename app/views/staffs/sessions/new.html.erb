@@ -1,8 +1,4 @@
-<header>
-<h1 class="text-white bg-dark">勤怠アプリ</h1>
-</header>
-<body>
-  <div class="container">
+<div class="container">
   <%# <%= form_for(:session, url: staffs_sign_in_path) do |f| %>
     <%#<%= f.label :email %>
     <%#<%= f.email_field :email %>
@@ -10,8 +6,8 @@
     <%#<%= f.password_field :password %>
     <%#<%= f.submit "sign in" %>
   <%#<% end %>
-    <div class="row bg-info">
-      <div class="col-12 col-lg-6">
+    <div class="row">
+      <div class="col-12 col-lg-6 mx-auto">
         <%= form_with url: staffs_sign_in_path, local: false, data: { remote: false } do |f| %>
           <h1 class="text-center">スタッフログイン</h1>
           <div class="mb-3">
@@ -32,4 +28,3 @@
   <%# <div class="border col-5 <%= true ? 1 : 2" id="<%= @id"> %>
   <%# </div> %>
   </div>
-</body>

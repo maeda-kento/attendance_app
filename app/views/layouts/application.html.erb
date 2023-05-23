@@ -9,6 +9,8 @@
   </head>
 
   <body>
+  <h1 class="text-white bg-dark" class="m-10">勤怠アプリ</h1>
     <%= yield %>
+  <%= tag.div(debug(params), class: "debug border border-3 p-3") if Rails.env.development? %>
   </body>
 </html>
