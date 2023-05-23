@@ -1,0 +1,31 @@
+
+<div class="container">
+  <table class="table">
+    <tbody>
+      <tr>
+      <th>ID</th><td><%= current_staff.id %></td>
+      </tr>
+      <tr>
+      <th>姓</th><td><%= current_staff.last_name %></td>
+      </tr>
+      <tr>
+      <th>名</th><td><%= current_staff.first_name %></td>
+      </tr>
+      <tr>
+      <th>生年月日</th><td><%= l current_staff.birthed_on, format: :long %></td>
+      </tr>
+      <tr>
+      <th>メールアドレス</th><td><%= current_staff.email %></td>
+      </tr>
+      <tr>
+      <th>時給</th><td><%= current_staff.hourly_pay %>円</td>
+      </tr>
+      <tr>
+      <th>性別</th><td><%= current_staff.gender_i18n %></td>
+      </tr>
+      <tr>
+      <th>部署</th><td><%= @department.name %></td>
+      </tr>
+      <tbody>
+  </table>
+</div>

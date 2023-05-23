@@ -1,4 +1,10 @@
 ja:
+  enums:
+    staff:
+      gender:
+        male: 男性
+        female: 女性
+        other: その他
   activerecord:
     models:
       staff: スタッフ
@@ -11,6 +17,8 @@ ja:
         gender: 性別
         hourly_pay: 給料
         birthed_on: 生年月日
+        department: 部署名
   attributes:
     created_at: 作成日時
-    updated_at: 更新日時
+    updated_at: 更新日時  
+  
