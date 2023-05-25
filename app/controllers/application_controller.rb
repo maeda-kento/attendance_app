@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include Staffs::SessionsHelper
 
+  add_flash_types :success, :info, :warning, :danger
+
   private
   # ログイン済みユーザーかどうか確認
     def signed_in_staff

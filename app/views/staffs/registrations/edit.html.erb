@@ -1,24 +1,48 @@
-<div class= "container" >
-  <div class= "row" >
-  <%= form_with model: current_staff, url: staffs_registrations_path, method: :patch, deta: { remote: false } do |f| %>
-    <!--フォーム内容 -->
-    <%= f.label :last_name %><span>:</span>
-    <%= f.text_field :last_name, id: "staff_last_name", class: "form-control" %>
-    <%= f.label :first_name %><span>:</span>
-    <%= f.text_field :first_name, id: "staff_first_name", class: "form-control" %>
-    <%= f.label :birthed_on %><span>:</span>
-    <%= f.date_field :birthed_on, id: "staff_birthed_on", class: "form-control" %>
-    <%= f.label :email %>
-    <%= f.email_field :email, id: "staff_birthed_on", class: "form-control" %>
-    <%= f.label :hourly_pay %><span>:</span>
-    <%= f.number_field :hourly_pay, id: "staff_hourly_pay", class: "form-control" %>
-    <div>
-    <%= f.label :gender %><span>:</span>
-    <%= f.collection_radio_buttons :gender, Staff.genders_i18n, :first, :last %>
+<div class = "container" >
+  <%= link_to "< 戻る", (" /staffs/registrations "), class: "btn btn-outline-dark"%>
+  <div class = "row">
+    <div class = "col-6 offset-2">
+      <%= form_with model: current_staff, url: staffs_registrations_path, local: true do |f| %>
+        <% if current_staff.errors.any? %>
+        <div class = "p-3 mb-2 bg-danger text-white rounded"><%= "#{current_staff.errors.count}件のエラーがあります" %></div>
+        <% end %>
+        
+        <!--フォーム内容 -->
+        <%= f.label :last_name %><span>:</span>
+        <%= f.text_field :last_name, id: "staff_last_name", class: "form-control #{ "is-invalid" if current_staff.errors.full_messages_for(:last_name).any? }", maxlength: 10, required: true %>
+        <% if current_staff.errors.full_messages_for(:last_name).any? %>
+          <% current_staff.errors.full_messages_for(:last_name).each do |n|%>
+            <ul class="list-unstyled small text-danger"><li><%= n%></li></ul>
+          <% end %>
+        <% end %>
+        <%= f.label :first_name %><span>:</span>
+        <%= f.text_field :first_name, id: "staff_first_name", class: "form-control #{ "is-invalid" if current_staff.errors.full_messages_for(:first_name).any? }", maxlength: 10, required: true %>
+        <% if current_staff.errors.full_messages_for(:first_name).any? %>
+          <% current_staff.errors.full_messages_for(:first_name).each do |n|%>
+            <ul class="list-unstyled small text-danger"><li><%= n%></li></ul>
+          <% end %>
+        <% end %>
+        <%= f.label :birthed_on %><span>:</span>
+        <%= f.date_field :birthed_on, id: "staff_birthed_on", class: "form-control #{ "is-invalid" if current_staff.errors.full_messages_for(:birthed_on).any? }",required: true %>
+        <%= f.label :email %>
+        <%= f.email_field :email, id: "staff_birthed_on", class: "form-control #{ "is-invalid" if current_staff.errors.full_messages_for(:email).any? }",required: true %>
+        <% if current_staff.errors.full_messages_for(:email).any? %>
+          <% current_staff.errors.full_messages_for(:email).each do |n| %>
+            <ul class="list-unstyled small text-danger"><li><%= n%></li></ul> 
+          <% end %>
+        <% end %>
+        <%= f.label :hourly_pay %><span>:</span>
+        <%= f.number_field :hourly_pay, id: "staff_hourly_pay", class: "form-control #{ "is-invalid" if current_staff.errors.full_messages_for(:hourly_pay).any? }",required: true, in:0..9999 %>
+        <div>
+          <%= f.label :gender %><span>:</span>
+          <%= f.collection_radio_buttons :gender, Staff.genders_i18n, :first, :last %>
+        </div>
+        <%= f.label :department %><span>:</span>
+        <%= f.collection_select :department_id, Department.all, :id, :name, {}, { class: "form-control #{ "is-invalid" if current_staff.errors.full_messages_for(:department).any? }" } %>
+        <div class = "offset-4">
+        <%= f.submit "変更を送信", class: "btn btn-success col-6 mt-4" %>
+        </div>
+        <% end %>
     </div>
-    <%= f.label :department %><span>:</span>
-    <%= f.collection_select :department, Department.all, :id, :name, {}, { class: "form-control" } %>
-    <%= f.submit "変更を送信", class: "btn btn-success" %>
-  <% end %>
   </div>
 </div>

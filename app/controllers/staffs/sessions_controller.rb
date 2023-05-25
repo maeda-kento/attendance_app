@@ -1,4 +1,5 @@
 class Staffs::SessionsController < ApplicationController
+  add_flash_types :success, :info, :warning, :danger
 
   def new
   end
@@ -7,8 +8,9 @@ class Staffs::SessionsController < ApplicationController
     staff = Staff.find_by(email: params[:email].downcase)
     if staff && staff.authenticate(params[:password])
       sign_in staff
-      redirect_to staffs_tops_url
+      redirect_to staffs_tops_url, notice: "ログインしました"
     else
+      flash.now[:alert] = "ログイン失敗しました。"
       render 'new'
     end
   end
