@@ -20,18 +20,17 @@
       </table>
     </div>
     <% if @attendance.started_at == nil%>
-      <button class ="btn btn-outline-dark offset-5 col-2 mb-5"><%= "出勤"%></button>
+      <%= link_to "出勤",staffs_attendance_path(@attendance, type: :start), method: :patch, class: "btn btn-outline-dark offset-5 col-2 mb-5" %>
 
-    <% elsif @attendance.started_at && !@attendance.finished_at %>
-        <button class ="btn btn-outline-dark offset-4 col-2 mb-5"><%= "休憩開始"%></button>
-        <button class ="btn btn-outline-dark col-2 mb-5"><%= "退勤"%></button>
+    <% elsif !@attendance.break_finished_at && @attendance.break_started_at%>
+    <%= link_to "休憩終了",staffs_attendance_path(@attendance, type: :break_finish), method: :patch, class: "btn btn-outline-dark offset-5 col-2 mb-5" %>
 
-    <% elsif @attendance.started_at && !@attendance.break_finished_at && @attendance.break_started_at%>
-      <button class ="btn btn-outline-dark offset-5 col-2 mb-5"><%= "休憩終了"%></button>
+    <% elsif @attendance.break_started_at && @attendance.break_finished_at && !@attendance.finished_at %>
+    <%= link_to "退勤",staffs_attendance_path(@attendance, type: :finish), method: :patch, class: "btn btn-outline-dark offset-5 col-2 mb-5" %>
 
-    <% elsif @attendance.started_at || @attendance.break_started_at && @attendance.break_finished_at%>
-      <button class ="btn btn-outline-dark offset-5 col-2 mb-5"><%= "退勤"%></button>
-
+    <% elsif !@attendance.finished_at && !@attendance.break_started_at %>
+    <%= link_to "休憩開始",staffs_attendance_path(@attendance, type: :break_start), method: :patch, class: "btn btn-outline-dark offset-4 col-2 mb-5" %>
+    <%= link_to "退勤",staffs_attendance_path(@attendance, type: :finish), method: :patch, class: "btn btn-outline-dark col-2 mb-5" %>
     <% end %>
     <div class ="offset-4 col-6">
       <%= link_to "編集ページ >", (" /staffs/registrations/edit "), class: "btn btn-outline-dark"%>

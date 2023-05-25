@@ -4,6 +4,8 @@ class Staff < ApplicationRecord
 
   has_secure_password
 
+  attr_accessor :start, :finish, :break_finish, :break_start
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   enum gender: { male: 1, female: 2, other: 0 }

@@ -5,4 +5,5 @@ class Staffs::TopsController < ApplicationController
   def index
     @attendance = current_staff.attendances.find_by(worked_on: Date.today)
   end
+
 end

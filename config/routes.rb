@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   namespace :staffs do
     resources :tops, only: :index
-    resources :attendances, only: :index
+    resources :attendances, only: [:index, :update]
     resource :registrations, only: [:show, :edit, :update]
   end
 
