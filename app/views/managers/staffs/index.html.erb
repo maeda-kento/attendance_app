@@ -1,0 +1,47 @@
+<h4>社員ID:<%= sprintf("%03d", current_staff.id) %></h4>
+<h4>名前:<%= current_staff.last_name%><%= current_staff.first_name%></h4>
+  <div class="container">
+    <div class="row">
+      <%= link_to "< トップへ", (" /managers/tops "), class: "btn btn-outline-dark"%>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>スタッフID</th>
+          <th>名前</th>
+          <th>生年月日</th>
+          <th>メールアドレス</th>
+          <th>性別</th>
+          <th>時給</th>
+          <th>部署</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @staffs.each do |staffs| %>
+          <tr>
+            <td>
+              <%= sprintf("%03d",staffs.id) %>
+            </td>
+            <td>
+              <%= staffs.last_name %><%= staffs.first_name%>
+            </td>
+            <td>
+              <%= staffs.birthed_on %>
+            </td>
+            <td>
+              <%= staffs.email %>
+            </td>
+            <td>
+              <%= staffs.gender_i18n %>
+            </td>
+            <td>
+              <%= staffs.hourly_pay %>円
+            </td>
+            <td>
+              <%= staffs.department.name %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>

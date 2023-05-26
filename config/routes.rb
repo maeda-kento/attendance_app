@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  namespace :managers do
+    get 'staffs/index'
+  end
+
+  namespace :managers do
+    get 'sessions/new'
+  end
+
+  namespace :managers do
+    get 'sessions/create'
+  end
+
   get 'staff/new'
 
   get    'staffs/sign_in',   to: 'staffs/sessions#new'
@@ -9,6 +21,11 @@ Rails.application.routes.draw do
     resources :tops, only: :index
     resources :attendances, only: [:index, :update]
     resource :registrations, only: [:show, :edit, :update]
+  end
+  namespace :managers do
+    resources :tops, only: :index
+    resources :sessions, only: [:create, :new]
+    resources :staffs, only: :index
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

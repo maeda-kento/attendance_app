@@ -14,7 +14,7 @@ class Staffs::RegistrationsController < ApplicationController
     if current_staff.update(post_params)
       redirect_to staffs_registrations_path, success: "アカウントを更新しました"
     else
-      # binding.pry
+      
       flash.now[:danger] = "アカウントの更新に失敗しました。"
       render action: :edit
     end

@@ -29,4 +29,15 @@ end
   end
 end
 
+10.times do |n|
+  gimei  = Gimei.new
+  email = "manager#{n+1}@example.com"
+  Manager.create!(
+    first_name: gimei.first.kanji,
+    last_name: gimei.last.kanji,
+    email: "manager#{n+1}@example.com", 
+    password: "1234rewq", 
+    password_confirmation: "1234rewq"
+  )
+end
 

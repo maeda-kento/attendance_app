@@ -1,4 +1,5 @@
-<h4>ID:<%= current_staff.id%>お名前:<%= current_staff.last_name%><%= current_staff.first_name%></h4>
+<h4>ID:<%= sprintf("%03d", current_staff.id) %></h4>
+<h4>お名前:<%= current_staff.last_name%><%= current_staff.first_name%></h4>
   <div class="container">
     <div class="row">
       <div class="col-4 text-left">
@@ -37,48 +38,38 @@
           <%= attendance.worked_on %>
           <%= tag.span attendance.id, class: "ml-3" %>
         </td>
-        <td><%= attendance.started_at&.strftime("%H時%H分%S秒") %></td>
-        <td><%= attendance.break_started_at&.strftime("%H時%H分%S秒") %></td>
-        <td><%= attendance.break_finished_at&.strftime("%H時%H分%S秒") %></td>
-        <td><%= attendance.finished_at&.strftime("%H時%H分%S秒") %></td>
+        <td><%= attendance.started_at&.strftime("%H時%M分%S秒") %></td>
+        <td><%= attendance.break_started_at&.strftime("%H時%M分%S秒") %></td>
+        <td><%= attendance.break_finished_at&.strftime("%H時%M分%S秒") %></td>
+        <td><%= attendance.finished_at&.strftime("%H時%M分%S秒") %></td>
         <td>
-          <% if attendance.started_at && attendance.finished_at %>
-            <% min = (attendance.finished_at - attendance.started_at) / 60  %>
-            <% hour = min / 60%>
-            <% rest = min % 60%>
+          <% if attendance.work_min %>
+            <% total_work_count += 1 %>
+            <% hour = attendance.work_min / 60%>
+            <% rest = attendance.work_min % 60%>
             <%= "#{hour.to_i}時間#{sprintf("%02d",rest.to_i)}分"%>
             <% total_work_b_hour += hour%>
             <% total_work_b_rest += rest%>
           <% end %>
-          <% if attendance.started_at %>
-            <% total_work_count += 1 %>
-          <% end %>
+
         </td>
         <td>
-          <% if attendance.break_started_at && attendance.break_finished_at %>
-            <% b_min = (attendance.break_finished_at - attendance.break_started_at) / 60  %>
-            <% b_hour = b_min / 60%>
-            <% b_rest = b_min % 60%>
+          <% if attendance.break_min %>
+            <% b_hour = attendance.break_min / 60%>
+            <% b_rest = attendance.break_min % 60%>
             <%= "#{b_hour.to_i}時間#{sprintf("%02d",b_rest.to_i)}分"%>
             <% total_break_hour += b_hour%>
             <% total_break_rest += b_rest%>
           <% end %>
         </td>
         <td>
-          <% if attendance.started_at && attendance.finished_at %>
-            <% if attendance.break_started_at && attendance.break_finished_at %>
-              <% min = (attendance.finished_at - attendance.started_at) / 60  %>
-              <% hour = min / 60%>
-              <% rest = min % 60%>
-              <% b_min = (attendance.break_finished_at - attendance.break_started_at) / 60  %>
-              <% b_hour = b_min / 60%>
-              <% b_rest = b_min % 60%>
-              <% t_hour = hour - b_hour%>
-              <% t_rest = rest - b_rest%>
+          <% if attendance.actual_work_min %>
+              <% t_hour = attendance.actual_work_min / 60 %>
+              <% t_rest = attendance.actual_work_min % 60 %>
               <%= "#{t_hour.to_i}時間#{sprintf("%02d",t_rest.to_i)}分"%>
               <% total_work_t_hour += t_hour%>
               <% total_work_t_rest += t_rest%>
-            <% end %>
+              
           <% end %>
         </td>
         </tr>
