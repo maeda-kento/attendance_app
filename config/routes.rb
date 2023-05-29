@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get    'staffs/sign_in',   to: 'staffs/sessions#new'
   post   'staffs/sign_in',   to: 'staffs/sessions#create'
   delete 'staffs/sign_out',  to: 'staffs/sessions#destroy'
+  
 
   namespace :staffs do
     resources :tops, only: :index
@@ -25,7 +26,11 @@ Rails.application.routes.draw do
   namespace :managers do
     resources :tops, only: :index
     resources :sessions, only: [:create, :new]
-    resources :staffs, only: :index
+    resources :staffs, only: [:index, :edit, :show, :update, :destroy] do
+      scope module: :staffs do
+        resources :attendances, only: [:index]
+      end
+    end
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -1,6 +1,6 @@
 class Staff < ApplicationRecord
   belongs_to :department
-  has_many :attendances, foreign_key: "staff_id"
+  has_many :attendances, dependent: :destroy
 
   has_secure_password
 

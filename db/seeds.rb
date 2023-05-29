@@ -8,12 +8,16 @@ end
   email = "example-#{n+1}@example.com"
   start_day = Date.new(1970, 01, 01)
   last_day = Date.new(1980, 12, 31)
+  h_pay = 9999
+  l_pay = 0
+  hourly_pay = Random.rand(l_pay..h_pay)
   birthed_on = Random.rand(start_day..last_day)
   gender = gimei.gender.eql?(:male) ? 1 : 2
   Staff.create!(
     first_name: gimei.first.kanji,
     last_name: gimei.last.kanji,
     birthed_on: birthed_on,
+    hourly_pay: hourly_pay,
     gender: gender,
     email: "example#{n+1}@example.com", 
     password: "1234rewq", 

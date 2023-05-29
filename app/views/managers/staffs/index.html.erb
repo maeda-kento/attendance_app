@@ -16,28 +16,31 @@
         </tr>
       </thead>
       <tbody>
-        <% @staffs.each do |staffs| %>
+        <% @staffs.each do |staff| %>
           <tr>
             <td>
-              <%= sprintf("%03d",staffs.id) %>
+              <%= sprintf("%03d",staff.id) %>
             </td>
             <td>
-              <%= staffs.last_name %><%= staffs.first_name%>
+              <%= link_to "#{staff.last_name} #{staff.first_name}", edit_managers_staff_path(staff), class: "link-dark"%>
             </td>
             <td>
-              <%= staffs.birthed_on %>
+              <%= staff.birthed_on %>
             </td>
             <td>
-              <%= staffs.email %>
+              <%= staff.email %>
             </td>
             <td>
-              <%= staffs.gender_i18n %>
+              <%= staff.gender_i18n %>
             </td>
             <td>
-              <%= staffs.hourly_pay %>円
+              <%= staff.hourly_pay %>円
             </td>
             <td>
-              <%= staffs.department.name %>
+              <%= staff.department.name %>
+            </td>
+            <td>
+            <%= link_to "消去", managers_staff_path(staff) ,method: :delete, class: "btn btn-outline-dark" %>
             </td>
           </tr>
         <% end %>

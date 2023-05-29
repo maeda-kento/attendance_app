@@ -1,5 +1,5 @@
 class Department < ApplicationRecord
-  has_many :staffs, foreign_key: "department_id"
+  has_many :staffs
 
   validates :name, presence: true, length: { maximum: 10 }
 end
