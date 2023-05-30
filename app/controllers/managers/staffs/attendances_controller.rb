@@ -7,15 +7,21 @@ class Managers::Staffs::AttendancesController < ApplicationController
   end
 
   def edit_one_month
-    
+
   end
 
   def update_one_month
-    attendances_params.each do |id, attr|
-      u_atten = Attendance.find(id)
-      u_atten.update(attr)
+    @staff = Staff.find(params[:staff_id])
+    res = Attendance.update_one_month(attendances_params)
+    if res.is_a? Array
+      @attendances = res
+      flash.now[:alert] = "編集失敗しました。"
+      @one_month = (res.first.worked_on)..(res.last.worked_on)
+      render action: "edit_one_month"
+    else
+      redirect_to managers_staff_attendances_path(@staff), notice: "一括編集しました"
     end
-    redirect_to managers_staff_attendances_path
+
   end
 
   def control_one_month
@@ -27,4 +33,5 @@ class Managers::Staffs::AttendancesController < ApplicationController
   def attendances_params
     params.require(:staff).permit(attendances: [:started_at, :break_started_at, :break_finished_at, :finished_at])[:attendances]
   end
+
 end

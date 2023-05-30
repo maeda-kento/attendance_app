@@ -1,13 +1,17 @@
 
 <div class ="container">
-  <div class = "text-right">
-    <%= link_to "編集ページ >", (" /staffs/registrations/edit "), class: "btn btn-outline-dark"%>
-  </div>
-  <div class = "row" >
-    <table class="table">
+  <div class= "row">
+    <div class = "col-4 text-left mt-4">
+      <%= link_to "< トップへ", (" /staffs/tops "), class: "btn btn-outline-dark"%>
+    </div>
+    <div class = "col-4 text-center mt-4"><h2>登録情報</h2></div>
+    <div class = "col-4 text-right mt-4">
+      <%= link_to "編集ページ >", (" /staffs/registrations/edit "), class: "btn btn-outline-dark"%>
+    </div>
+    <table class="table table-bordered">
       <tbody>
         <tr>
-        <th>ID</th><td><%= current_staff.id %></td>
+        <th>ID</th><td><%= sprintf("%03d", current_staff.id) %></td>
         </tr>
         <tr>
         <th>姓</th><td><%= current_staff.last_name %></td>

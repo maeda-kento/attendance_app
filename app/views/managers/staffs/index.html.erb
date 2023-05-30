@@ -3,8 +3,13 @@
 <%# <%= current_manager.first_name</h4> %>
   <div class="container">
     <div class="row">
+    <div class = " text-left col-4 mt-4">
       <%= link_to "< トップへ", (" /managers/tops "), class: "btn btn-outline-dark"%>
-    <table class="table">
+    </div>
+    <div class = " text-center col-4 mt-4">
+      <h2>スタッフ一覧</h2>
+    </div>
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th>スタッフID</th>
@@ -14,6 +19,8 @@
           <th>性別</th>
           <th>時給</th>
           <th>部署</th>
+          <th>消去</th>
+          <th>勤怠</th>
         </tr>
       </thead>
       <tbody>

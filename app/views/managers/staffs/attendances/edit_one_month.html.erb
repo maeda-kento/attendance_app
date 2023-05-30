@@ -11,7 +11,7 @@
     </div>
   </div>
     <%= form_with model: @staff, url: update_one_month_managers_staff_attendances_path(@staff), local: :false, method: :patch do |f| %>
-      <table class="table">
+      <table class="table table-bordered">
         <thead>
           <tr>
             <th>勤務日</th>
@@ -30,16 +30,16 @@
                 <%= tag.span attendance.id, class: "ml-3" %>
               </td>
               <td>
-                <%= a.time_field :started_at, class: "form-control" %>
+                <%= a.time_field :started_at, class: "form-control #{"is-invalid" if attendance.errors.full_messages_for(:started_at).any?}" %>
               </td>
               <td>
-                <%= a.time_field :break_started_at, class: "form-control" %>
+                <%= a.time_field :break_started_at, class: "form-control #{"is-invalid" if attendance.errors.full_messages_for(:break_started_at).any?}" %>
               </td>
               <td>
-                <%= a.time_field :break_finished_at, class: "form-control" %>
+                <%= a.time_field :break_finished_at, class: "form-control #{"is-invalid" if attendance.errors.full_messages_for(:break_finished_at).any?}" %>
               </td>
               <td>
-                <%= a.time_field :finished_at, class: "form-control" %>
+                <%= a.time_field :finished_at, class: "form-control #{"is-invalid" if attendance.errors.full_messages_for(:finished_at).any?}" %>
               </td>
             </tr>
           <% end %>
