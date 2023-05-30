@@ -9,5 +9,4 @@ class Manager < ApplicationRecord
   validates :first_name, presence: true, length: { maximum: 10 }
   validates :password, format:{ with: VALID_PASSWORD_REGEX }, length: { minimum: 8, maximum: 12 }, allow_blank: true
   validates :email, format:{ with: VALID_EMAIL_REGEX }, presence: true, uniqueness: true
-
 end

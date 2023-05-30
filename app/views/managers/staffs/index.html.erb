@@ -1,5 +1,6 @@
-<h4>社員ID:<%= sprintf("%03d", current_staff.id) %></h4>
-<h4>名前:<%= current_staff.last_name%><%= current_staff.first_name%></h4>
+<%# <h4>社員ID:<%= sprintf("%03d", current_manager.id) </h4> %>
+<%# <h4>名前:<%= current_staff.last_name%>
+<%# <%= current_manager.first_name</h4> %>
   <div class="container">
     <div class="row">
       <%= link_to "< トップへ", (" /managers/tops "), class: "btn btn-outline-dark"%>
@@ -41,6 +42,9 @@
             </td>
             <td>
             <%= link_to "消去", managers_staff_path(staff) ,method: :delete, class: "btn btn-outline-dark" %>
+            </td>
+            <td>
+            <%= link_to "勤怠一覧", managers_staff_attendances_path(staff),method: :get, class: "btn btn-outline-dark" %>
             </td>
           </tr>
         <% end %>

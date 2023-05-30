@@ -1,0 +1,107 @@
+<%# <h4>ID:<%= sprintf("%03d", current_staff.id)</h4> %>
+<%# <h4>お名前:<%= current_staff.last_name%>
+<%# <%= current_staff.first_name</h4>%>
+<div class="container">
+  <div class="row">
+    <div class="col-4 text-left mt-4">
+      <%= link_to "< 前月", managers_staff_attendances_path(date: @one_month.first.last_month), class: "btn btn-outline-dark"%>
+    </div>
+    <div class="col-4 text-center mt-4">
+      <h2><%= @one_month.first.strftime "%Y年%m月"%></h2>
+    </div>
+    <div class="col-4 text-right mt-4">
+      <%= link_to "来月 >", managers_staff_attendances_path(date: @one_month.first.next_month), class: "btn btn-outline-dark" %>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>勤務日</th>
+          <th>出勤</th>
+          <th>休憩入</th>
+          <th>休憩出</th>
+          <th>退勤</th>
+          <th>労働時間</th>
+          <th>休憩時間</th>
+          <th>実労働時間</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% total_work_count = 0 %>
+      <% total_work_b_hour = 0%>
+      <% total_work_b_rest = 0%>
+      <% total_work_t_hour = 0%>
+      <% total_work_t_rest = 0%>
+      <% total_break_hour = 0%>
+      <% total_break_rest = 0%>
+      <% @attendances.each do |attendance| %>
+        <tr>
+        <td>
+          <%= attendance.worked_on %>
+          <%= tag.span attendance.id, class: "ml-3" %>
+        </td>
+        <td><%= attendance.started_at&.strftime("%H時%M分%S秒") %></td>
+        <td><%= attendance.break_started_at&.strftime("%H時%M分%S秒") %></td>
+        <td><%= attendance.break_finished_at&.strftime("%H時%M分%S秒") %></td>
+        <td><%= attendance.finished_at&.strftime("%H時%M分%S秒") %></td>
+        <td>
+          <% if attendance.work_min %>
+            <% total_work_count += 1 %>
+            <% hour = attendance.work_min / 60%>
+            <% rest = attendance.work_min % 60%>
+            <%= "#{hour.to_i}時間#{sprintf("%02d",rest.to_i)}分"%>
+            <% total_work_b_hour += hour%>
+            <% total_work_b_rest += rest%>
+          <% end %>
+        </td>
+        <td>
+          <% if attendance.break_min %>
+            <% b_hour = attendance.break_min / 60%>
+            <% b_rest = attendance.break_min % 60%>
+            <%= "#{b_hour.to_i}時間#{sprintf("%02d",b_rest.to_i)}分"%>
+            <% total_break_hour += b_hour%>
+            <% total_break_rest += b_rest%>
+          <% end %>
+        </td>
+        <td>
+          <% if attendance.actual_work_min %>
+              <% t_hour = attendance.actual_work_min / 60 %>
+              <% t_rest = attendance.actual_work_min % 60 %>
+              <%= "#{t_hour.to_i}時間#{sprintf("%02d",t_rest.to_i)}分"%>
+              <% total_work_t_hour += t_hour%>
+              <% total_work_t_rest += t_rest%>
+              
+          <% end %>
+        </td>
+        </tr>
+      <% end %>
+      <tbody>
+      <tfoot>
+          <th>出勤回数</th>
+          <th>合計勤務時間</th>
+          <th>合計実勤務時間</th>
+          <th>合計休憩時間</th>
+          <th>給与</th>
+        <tr>
+          <td>
+            <%= total_work_count %>
+          </td>
+          <td>
+            <%= "#{total_work_b_hour.to_i}時間#{sprintf("%02d",total_work_b_rest.to_i)}分" %>
+          </td>
+          <td>
+            <%= "#{total_work_t_hour.to_i}時間#{sprintf("%02d",total_work_t_rest.to_i)}分" %>
+          </td>
+          <td>
+            <%= "#{total_break_hour.to_i}時間#{sprintf("%02d",total_break_rest.to_i)}分" %>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class= "col-4 text-left mt-4">
+      <%= link_to "< スタッフ一覧", managers_staffs_path, class: "btn btn-outline-dark"%>
+    </div>
+    <div class= "offset-4 col-4 text-right mt-4">
+      <%= link_to "編集 >", edit_one_month_managers_staff_attendances_path(@staff), class: "btn btn-outline-dark"%>
+    </div>
+  </div>
+</div>

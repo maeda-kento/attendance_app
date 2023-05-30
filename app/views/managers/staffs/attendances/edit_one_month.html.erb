@@ -1,0 +1,52 @@
+<div class="container">
+  <div class= "row">
+    <div class=" text-left col-4">
+      <%= link_to "< 前月", edit_one_month_managers_staff_attendances_path(date: @one_month.first.last_month), class: "btn btn-outline-dark"%>
+    </div>
+    <div class=" text-center col-4">
+      <h2><%= @one_month.first.strftime "%Y年%m月"%></h2>
+    </div>
+    <div class=" text-right col-4">
+      <%= link_to "来月 >", edit_one_month_managers_staff_attendances_path(date: @one_month.first.next_month), class: "btn btn-outline-dark" %>
+    </div>
+  </div>
+    <%= form_with model: @staff, url: update_one_month_managers_staff_attendances_path(@staff), local: :false, method: :patch do |f| %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>勤務日</th>
+            <th>出勤</th>
+            <th>休憩入</th>
+            <th>休憩出</th>
+            <th>退勤</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @attendances.each do |attendance| %>
+          <%= f.fields_for "attendances[]", attendance do |a| %>
+            <tr>
+              <td>
+                <%= attendance.worked_on %>
+                <%= tag.span attendance.id, class: "ml-3" %>
+              </td>
+              <td>
+                <%= a.time_field :started_at, class: "form-control" %>
+              </td>
+              <td>
+                <%= a.time_field :break_started_at, class: "form-control" %>
+              </td>
+              <td>
+                <%= a.time_field :break_finished_at, class: "form-control" %>
+              </td>
+              <td>
+                <%= a.time_field :finished_at, class: "form-control" %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+        <tbody>
+      </table>
+      <%= f.submit "更新", class: "btn btn-success col-12 mt-4" %>
+    <% end %>
+  </div>
+</div>

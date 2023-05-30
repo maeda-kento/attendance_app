@@ -21,9 +21,4 @@ class Staffs::AttendancesController < ApplicationController
   @attendance.update({ attribute => Time.current })
   redirect_to staffs_tops_path
   end
-
-  private
-    def set_one_month
-      @one_month = params[:date].nil? ? Date.current.all_month : params[:date].to_date.all_month
-    end
 end

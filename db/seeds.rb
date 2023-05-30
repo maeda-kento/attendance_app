@@ -43,5 +43,6 @@ end
     password: "1234rewq", 
     password_confirmation: "1234rewq"
   )
+  end
 end
 

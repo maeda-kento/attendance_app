@@ -28,7 +28,10 @@ Rails.application.routes.draw do
     resources :sessions, only: [:create, :new]
     resources :staffs, only: [:index, :edit, :show, :update, :destroy] do
       scope module: :staffs do
-        resources :attendances, only: [:index]
+        resources :attendances, only: [:index] do
+          get :edit_one_month, on: :collection
+          patch :update_one_month, on: :collection
+        end
       end
     end
   end
