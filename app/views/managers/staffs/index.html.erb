@@ -1,10 +1,24 @@
 <%# <h4>社員ID:<%= sprintf("%03d", current_manager.id) </h4> %>
 <%# <h4>名前:<%= current_staff.last_name%>
 <%# <%= current_manager.first_name</h4> %>
-<div id = "staff_modal"></div>
-<button type="button"  class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#on"></button>
-<div class= "modal fade show" id = "on" tabindex="-1" role="dialog" aria-labelledby="onLabel" aria-hidden="true"></div>
+<button type="button" class="btn btn-primary d-none" id = "open-staff-modal" data-toggle="modal" data-target="#exampleModal"></button>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">スタッフ情報編集</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container">
   <div class="row">
   <div class = " text-left col-4 mt-4">

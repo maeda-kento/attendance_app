@@ -1,1 +1,2 @@
-$('#staff_modal').html('<%= j(render 'managers/staffs/edit')%>');
+$('#open-staff-modal').trigger("click");
+$('#exampleModal .modal-body').html('<%= j(render 'managers/staffs/edit')%>');
