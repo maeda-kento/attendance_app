@@ -8,6 +8,7 @@ class Managers::StaffsController < ApplicationController
     end
   
     def edit
+      
     end
   
     def update

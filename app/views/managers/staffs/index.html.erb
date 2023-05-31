@@ -1,61 +1,65 @@
 <%# <h4>社員ID:<%= sprintf("%03d", current_manager.id) </h4> %>
 <%# <h4>名前:<%= current_staff.last_name%>
 <%# <%= current_manager.first_name</h4> %>
-  <div class="container">
-    <div class="row">
-    <div class = " text-left col-4 mt-4">
-      <%= link_to "< トップへ", (" /managers/tops "), class: "btn btn-outline-dark"%>
-    </div>
-    <div class = " text-center col-4 mt-4">
-      <h2>スタッフ一覧</h2>
-    </div>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>スタッフID</th>
-          <th>名前</th>
-          <th>生年月日</th>
-          <th>メールアドレス</th>
-          <th>性別</th>
-          <th>時給</th>
-          <th>部署</th>
-          <th>消去</th>
-          <th>勤怠</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @staffs.each do |staff| %>
-          <tr>
-            <td>
-              <%= sprintf("%03d",staff.id) %>
-            </td>
-            <td>
-              <%= link_to "#{staff.last_name} #{staff.first_name}", edit_managers_staff_path(staff), class: "link-dark"%>
-            </td>
-            <td>
-              <%= staff.birthed_on %>
-            </td>
-            <td>
-              <%= staff.email %>
-            </td>
-            <td>
-              <%= staff.gender_i18n %>
-            </td>
-            <td>
-              <%= staff.hourly_pay %>円
-            </td>
-            <td>
-              <%= staff.department.name %>
-            </td>
-            <td>
-            <%= link_to "消去", managers_staff_path(staff) ,method: :delete, class: "btn btn-outline-dark" %>
-            </td>
-            <td>
-            <%= link_to "勤怠一覧", managers_staff_attendances_path(staff),method: :get, class: "btn btn-outline-dark" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    </div>
+<div id = "staff_modal"></div>
+<button type="button"  class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#on"></button>
+<div class= "modal fade show" id = "on" tabindex="-1" role="dialog" aria-labelledby="onLabel" aria-hidden="true"></div>
+
+<div class="container">
+  <div class="row">
+  <div class = " text-left col-4 mt-4">
+    <%= link_to "< トップへ", (" /managers/tops "), class: "btn btn-outline-dark"%>
   </div>
+  <div class = " text-center col-4 mt-4">
+    <h2>スタッフ一覧</h2>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>スタッフID</th>
+        <th>名前</th>
+        <th>生年月日</th>
+        <th>メールアドレス</th>
+        <th>性別</th>
+        <th>時給</th>
+        <th>部署</th>
+        <th>消去</th>
+        <th>勤怠</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @staffs.each do |staff| %>
+        <tr>
+          <td>
+            <%= sprintf("%03d",staff.id) %>
+          </td>
+          <td>
+            <%= link_to "#{staff.last_name} #{staff.first_name}", edit_managers_staff_path(staff), class: "link-dark", remote: true %>
+          </td>
+          <td>
+            <%= staff.birthed_on %>
+          </td>
+          <td>
+            <%= staff.email %>
+          </td>
+          <td>
+            <%= staff.gender_i18n %>
+          </td>
+          <td>
+            <%= staff.hourly_pay %>円
+          </td>
+          <td>
+            <%= staff.department.name %>
+          </td>
+          <td>
+          <%= link_to "消去", managers_staff_path(staff) ,method: :delete, class: "btn btn-outline-dark" %>
+          </td>
+          <td>
+          <%= link_to "勤怠一覧", managers_staff_attendances_path(staff),method: :get, class: "btn btn-outline-dark" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+</div>
