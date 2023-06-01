@@ -1,0 +1,5 @@
+<% if @staff.invalid? %>
+  $('#exampleModal .modal-body').html('<%= j(render 'managers/staffs/edit')%>');
+<% else %>
+  <%= flash[:notice] = "成功"%>
+<% end %>

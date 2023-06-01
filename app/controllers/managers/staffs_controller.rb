@@ -16,7 +16,6 @@ class Managers::StaffsController < ApplicationController
         redirect_to managers_staffs_path
       else
         flash.now[:danger] = "アカウントの更新に失敗しました。"
-        render action: :edit
       end
     end
     
