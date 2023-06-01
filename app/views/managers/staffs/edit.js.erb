@@ -1,2 +1,35 @@
 $('#open-staff-modal').trigger("click");
 $('#exampleModal .modal-body').html('<%= j(render 'managers/staffs/edit')%>');
+$("#zipcode-btn").click(function () {
+  var param = {zipcode: $('#staff_zipcode').val()}
+  var send_url = "http://zipcloud.ibsnet.co.jp/api/search";
+  $.ajax({
+      type: "GET",
+      cache: false,
+      data: param,
+      url: send_url,
+      dataType: "jsonp",
+      success: function (res) {
+          if (res.status == 200) {
+              //処理が成功したとき
+              //該当する住所を表示
+              var html = '';
+              for (var i = 0; i < res.results.length; i++) {
+                  var result = res.results[i];
+                  console.log(res.results);
+                  html += result.address1 + result.address2 + result.address3;
+              }
+              console.log(html)
+              $('#staff_adress').val(html);
+          } else {
+              //エラーだった時
+              //エラー内容を表示
+              $('#staff_adress').html(res.message);
+
+          }
+      },
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+          console.log(XMLHttpRequest);
+      }
+  });
+});

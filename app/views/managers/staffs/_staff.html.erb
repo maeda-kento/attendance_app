@@ -1,4 +1,4 @@
-<tr>
+<%= tag.tr id: dom_id(staff) do %>
   <td>
     <%= sprintf("%03d",staff.id) %>
   </td>
@@ -21,9 +21,12 @@
     <%= staff.department.name %>
   </td>
   <td>
-  <%= link_to "消去", managers_staff_path(staff) ,method: :delete, class: "btn btn-outline-dark" %>
+    <%= staff.zipcode %>
+  </td>
+  <td>
+    <%= staff.address %>
   </td>
   <td>
   <%= link_to "勤怠一覧", managers_staff_attendances_path(staff),method: :get, class: "btn btn-outline-dark" %>
   </td>
-</tr>
+<% end %>

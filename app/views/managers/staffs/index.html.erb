@@ -19,14 +19,19 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-  <div class = " text-left col-4 mt-4">
-    <%= link_to "< トップへ", (" /managers/tops "), class: "btn btn-outline-dark"%>
-  </div>
-  <div class = " text-center col-4 mt-4">
-    <h2>スタッフ一覧</h2>
-  </div>
+    <div class = " text-left col-4 mt-4">
+      <%= link_to "< トップへ", (" /managers/tops "), class: "btn btn-outline-dark"%>
+    </div>
+    <div class = " text-center col-4 mt-4">
+      <h2>スタッフ一覧</h2>
+    </div>
+    <div class= "text-right col-4" >
+      <%= link_to "ID順", managers_staffs_index_path(ID: "true"), class: "btn btn-outline-dark" %>
+      <%= link_to "時給昇順", managers_staffs_index_path(high_hourly_wage: "true"), class: "btn btn-outline-dark" %>
+      <%= link_to "時給降順", managers_staffs_index_path(low_hourly_rate: "true"), class: "btn btn-outline-dark" %>
+    </div>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -37,7 +42,8 @@
         <th>性別</th>
         <th>時給</th>
         <th>部署</th>
-        <th>消去</th>
+        <th>郵便番号</th>
+        <th>住所</th>
         <th>勤怠</th>
       </tr>
     </thead>

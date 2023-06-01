@@ -1,5 +1,6 @@
 <% if @staff.invalid? %>
   $('#exampleModal .modal-body').html('<%= j(render 'managers/staffs/edit')%>');
 <% else %>
-  <%= flash[:notice] = "成功"%>
+  $('#<%= dom_id(@staff) %>').replaceWith('<%= j(render 'staff', staff: @staff) %>')
+  $('#open-staff-modal').trigger("click");
 <% end %>

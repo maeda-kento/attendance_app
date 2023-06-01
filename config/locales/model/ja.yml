@@ -18,6 +18,8 @@ ja:
         hourly_pay: 給料
         birthed_on: 生年月日
         department: 部署名
+        zipcode: 郵便番号
+        address: 住所
   attributes:
     created_at: 作成日時
     updated_at: 更新日時  

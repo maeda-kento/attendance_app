@@ -4,7 +4,14 @@ class Managers::StaffsController < ApplicationController
   
   
     def index
-      @staffs = Staff.all.eager_load(:department).order(id: :asc)
+      @staffs = Staff.eager_load(:department)
+      if params[:low_hourly_rate]
+        @staffs = @staffs.low_hourly_rate
+      elsif params[:high_hourly_wage]
+        @staffs = @staffs.high_hourly_wage
+      elsif params[:ID]
+        @staffs = @staffs.ID
+      end
     end
   
     def edit
@@ -12,21 +19,17 @@ class Managers::StaffsController < ApplicationController
     end
   
     def update
-      if @staff.update(staff_params)
-        redirect_to managers_staffs_path
-      else
-        flash.now[:danger] = "アカウントの更新に失敗しました。"
-      end
+      @staff.update(staff_params)
     end
     
     def destroy
-      if @staff.destroy
-        redirect_to managers_staffs_path
-      end
+      # if @staff.destroy
+      #   redirect_to managers_staffs_path
+      # end
     end
   
     def staff_params
-      params.require(:staff).permit(:last_name, :first_name, :email, :birthed_on, :gender, :department_id, :hourly_pay)
+      params.require(:staff).permit(:last_name, :first_name, :email, :birthed_on, :gender, :department_id, :hourly_pay, :zipcode, :address)
     end
   
   

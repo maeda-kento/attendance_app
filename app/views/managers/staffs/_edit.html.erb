@@ -34,7 +34,19 @@
 </div>
 <%= f.label :department %><span>:</span>
 <%= f.collection_select :department_id, Department.all, :id, :name, {}, { class: "form-control #{ "is-invalid" if @staff.errors.full_messages_for(:department).any? }" } %>
+
+<%= f.label :zipcode %><span>:</span>
+<%= tag.div class: "input-group mb-3" do %>
+<%= f.text_field :zipcode, id: "staff_zipcode", class: "form-control #{ "is-invalid" if @staff.errors.full_messages_for(:zipcode).any? }", maxlength: 10, required: true %>
+<button class="btn btn-outline-secondary" type="button" id="zipcode-btn">住所検索</button>
+<% end %>
+
+<%= f.label :address %><span>:</span>
+<%= f.text_field :address, id: "staff_adress", class: "form-control #{ "is-invalid" if @staff.errors.full_messages_for(:address).any? }", required: true %>
+
 <div class = "offset-4">
   <%= f.submit "変更を送信", class: "btn btn-success col-6 mt-4" %>
 </div>
+<div class = "text-right">
+  <%= link_to "消去", managers_staff_path(@staff) ,method: :delete, remote: true, class: "btn btn-outline-dark" %>
 <% end %>

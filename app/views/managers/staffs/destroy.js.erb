@@ -1,0 +1,4 @@
+<% if @staff.destroy %>
+  $('#<%= dom_id(@staff) %>').remove();
+  $('#open-staff-modal').trigger("click");
+<% end %>

@@ -22,8 +22,7 @@ end
     email: "example#{n+1}@example.com", 
     password: "1234rewq", 
     password_confirmation: "1234rewq",
-    department_id: Random.rand(1..4)
-    
+    department_id: Random.rand(1..4),
   )
   (Date.today.beginning_of_month..Date.today.end_of_month).each do |worked_on|
     Attendance.create!(
@@ -43,6 +42,6 @@ end
     password: "1234rewq", 
     password_confirmation: "1234rewq"
   )
-  end
+
 end
 
