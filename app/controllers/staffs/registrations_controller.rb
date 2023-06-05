@@ -1,5 +1,5 @@
 class Staffs::RegistrationsController < ApplicationController
-  before_action :signed_in_staff, only: [:edit, :update, :destroy]
+  before_action :signed_in_staff, only:[:edit, :update, :destroy, :index]
   add_flash_types :success, :info, :warning, :danger
 
   def show

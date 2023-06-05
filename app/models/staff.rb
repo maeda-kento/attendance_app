@@ -13,12 +13,11 @@ class Staff < ApplicationRecord
 
   validates :last_name, presence: true, length: { maximum: 10 }
   validates :first_name, presence: true, length: { maximum: 10 }
-  validates :password, format:{ with: VALID_PASSWORD_REGEX }, length: { minimum: 8, maximum: 12 }, allow_blank: true
+  validates :password, format:{ with: VALID_PASSWORD_REGEX }, length: { minimum: 8, maximum: 12 }, allow_blank: true, on: :update
   validates :hourly_pay, presence: true, length: { minimum: 0, maximum: 9999 }
   validates :email, format:{ with: VALID_EMAIL_REGEX }, presence: true, uniqueness: true
   validates :gender, inclusion: { in: Staff.genders.keys }
-  # validates :zipcode, length: { minimum: 7, maximum: 7}
-
+  validates :reset_password_token, presence: true, uniqueness: true, allow_blank: true
 
   scope :high_hourly_wage, -> {order(hourly_pay: :desc)}
 

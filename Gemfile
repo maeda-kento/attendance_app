@@ -28,6 +28,7 @@ group :development do
   gem 'spring',                '2.0.2'
   gem 'spring-watcher-listen', '2.0.1'
   gem 'pry-rails'
+  gem 'letter_opener_web'
 end
 
 # Windows環境ではtzinfo-dataというgemを含める必要があります

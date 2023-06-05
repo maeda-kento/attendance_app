@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
   namespace :managers do
     get 'staffs/index'
   end
@@ -22,6 +25,7 @@ Rails.application.routes.draw do
     resources :tops, only: :index
     resources :attendances, only: [:index, :update]
     resource :registrations, only: [:show, :edit, :update]
+    resource :password_resets, only: %i[new create edit update]
   end
   namespace :managers do
     resources :tops, only: :index

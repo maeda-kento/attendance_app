@@ -18,7 +18,7 @@ $("#zipcode-btn").click(function () {
                   var result = res.results[i];
                   console.log(res.results);
                   html += result.address1 + result.address2 + result.address3;
-              }
+                }
               console.log(html)
               $('#staff_adress').val(html);
           } else {
