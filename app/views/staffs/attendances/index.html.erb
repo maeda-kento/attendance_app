@@ -1,16 +1,63 @@
+<!--jQuery JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!--jQuery UI JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<!--jQuery UI CSS-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+
 <h4>ID:<%= sprintf("%03d", current_staff.id) %></h4>
 <h4>お名前:<%= current_staff.last_name%><%= current_staff.first_name%></h4>
-  <div class="container">
-    <div class="row">
-      <div class="col-4 text-left">
-        <%= link_to "< 前月",staffs_attendances_path(date: @one_month.first.last_month), class: "btn btn-outline-dark"%>
-      </div>
-      <div class="col-4 text-center">
-        <h2><%= @one_month.first.strftime "%Y年%m月"%></h2>
-      </div>
-      <div class="col-4 text-right">
-        <%= link_to "来月 >",staffs_attendances_path(date: @one_month.first.next_month), class: "btn btn-outline-dark" %>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-4 text-left">
+      <%= link_to "< 前月",staffs_attendances_path(date: @one_month.first.last_month), class: "btn btn-outline-dark"%>
+    </div>
+    <div class="col-4 text-center">
+      <h2><%= @one_month.first.strftime "%Y年%m月"%><input class="fa-solid fa-calendar-days fa-xs d-none" style="color: #080a0c;" id="datepicker"></h2>
+      <!--Date picker element-->
+      <script>
+        $( function() {
+          $('#datepicker').datepicker({
+            //buttonImage: 'calendar-days-solid.png',// カレンダーアイコン画像
+            buttonImageOnly: false,           // 画像として表示
+            showOn: "button",               // カレンダー呼び出し元の定義
+            changeYear: true,
+            changeMonth: true,
+            onSelect: function (dateText, inst) {
+              var dateAsString = dateText; //the first parameter of this function
+              var dateAsObject = $(this).datepicker( 'getDate'); //the getDate method
+              console.log(dateAsObject.getFullYear());
+              console.log(dateAsObject.getMonth() + 1);
+              console.log(dateAsObject.dateFormat(dateText, 'yyyy-mm'));
+            }
+          });
+            
+          $.datepicker.regional['ja'] = {
+            closeText: '閉じる',
+            prevText: '<前',
+            nextText: '次>',
+            currentText: '今日',
+            monthNames: ['1月','2月','3月','4月','5月','6月',
+            '7月','8月','9月','10月','11月','12月'],
+            monthNamesShort: ['1月','2月','3月','4月','5月','6月',
+            '7月','8月','9月','10月','11月','12月'],
+            dayNames: ['日曜日','月曜日','火曜日','水曜日','木曜日','金曜日','土曜日'],
+            dayNamesShort: ['日','月','火','水','木','金','土'],
+            dayNamesMin: ['日','月','火','水','木','金','土'],
+            weekHeader: '週',
+            dateFormat: 'yy/mm/dd',
+            firstDay: 0,
+            isRTL: false,
+            showMonthAfterYear: true,
+            yearSuffix: '年'};
+          $.datepicker.setDefaults($.datepicker.regional['ja']);
+        });
+        
+      </script>
+    </div>
+    <div class="col-4 text-right">
+      <%= link_to "来月 >",staffs_attendances_path(date: @one_month.first.next_month), class: "btn btn-outline-dark" %>
+    </div>
     <table class="table">
       <thead>
         <tr>
@@ -34,53 +81,52 @@
       <% total_break_rest = 0%>
       <% @attendances.each do |attendance| %>
         <tr>
-        <td>
-          <%= attendance.worked_on %>
-          <%= tag.span attendance.id, class: "ml-3" %>
-        </td>
-        <td><%= attendance.started_at&.strftime("%H時%M分%S秒") %></td>
-        <td><%= attendance.break_started_at&.strftime("%H時%M分%S秒") %></td>
-        <td><%= attendance.break_finished_at&.strftime("%H時%M分%S秒") %></td>
-        <td><%= attendance.finished_at&.strftime("%H時%M分%S秒") %></td>
-        <td>
-          <% if attendance.work_min %>
-            <% total_work_count += 1 %>
-            <% hour = attendance.work_min / 60%>
-            <% rest = attendance.work_min % 60%>
-            <%= "#{hour.to_i}時間#{sprintf("%02d",rest.to_i)}分"%>
-            <% total_work_b_hour += hour%>
-            <% total_work_b_rest += rest%>
-          <% end %>
-
-        </td>
-        <td>
-          <% if attendance.break_min %>
-            <% b_hour = attendance.break_min / 60%>
-            <% b_rest = attendance.break_min % 60%>
-            <%= "#{b_hour.to_i}時間#{sprintf("%02d",b_rest.to_i)}分"%>
-            <% total_break_hour += b_hour%>
-            <% total_break_rest += b_rest%>
-          <% end %>
-        </td>
-        <td>
-          <% if attendance.actual_work_min %>
-              <% t_hour = attendance.actual_work_min / 60 %>
-              <% t_rest = attendance.actual_work_min % 60 %>
-              <%= "#{t_hour.to_i}時間#{sprintf("%02d",t_rest.to_i)}分"%>
-              <% total_work_t_hour += t_hour%>
-              <% total_work_t_rest += t_rest%>
-              
-          <% end %>
-        </td>
+          <td>
+            <%= attendance.worked_on %>
+            <%= tag.span attendance.id, class: "ml-3" %>
+          </td>
+          <td><%= attendance.started_at&.strftime("%H時%M分%S秒") %></td>
+          <td><%= attendance.break_started_at&.strftime("%H時%M分%S秒") %></td>
+          <td><%= attendance.break_finished_at&.strftime("%H時%M分%S秒") %></td>
+          <td><%= attendance.finished_at&.strftime("%H時%M分%S秒") %></td>
+          <td>
+            <% if attendance.work_min %>
+              <% total_work_count += 1 %>
+              <% hour = attendance.work_min / 60%>
+              <% rest = attendance.work_min % 60%>
+              <%= "#{hour.to_i}時間#{sprintf("%02d",rest.to_i)}分"%>
+              <% total_work_b_hour += hour%>
+              <% total_work_b_rest += rest%>
+            <% end %>
+          </td>
+          <td>
+            <% if attendance.break_min %>
+              <% b_hour = attendance.break_min / 60%>
+              <% b_rest = attendance.break_min % 60%>
+              <%= "#{b_hour.to_i}時間#{sprintf("%02d",b_rest.to_i)}分"%>
+              <% total_break_hour += b_hour%>
+              <% total_break_rest += b_rest%>
+            <% end %>
+          </td>
+          <td>
+            <% if attendance.actual_work_min %>
+                <% t_hour = attendance.actual_work_min / 60 %>
+                <% t_rest = attendance.actual_work_min % 60 %>
+                <%= "#{t_hour.to_i}時間#{sprintf("%02d",t_rest.to_i)}分"%>
+                <% total_work_t_hour += t_hour%>
+                <% total_work_t_rest += t_rest%>
+                
+            <% end %>
+          </td>
         </tr>
       <% end %>
-      <tbody>
+      </tbody>
       <tfoot>
-          <th>出勤回数</th>
-          <th>合計勤務時間</th>
-          <th>合計実勤務時間</th>
-          <th>合計休憩時間</th>
-          <th>給与</th>
+        <th>出勤回数</th>
+        <th>合計勤務時間</th>
+        <th>合計実勤務時間</th>
+        <th>合計休憩時間</th>
+        <th>給与</th>
         <tr>
           <td>
             <%= total_work_count %>
@@ -97,5 +143,8 @@
         </tr>
       </tfoot>
     </table>
-    </div>
   </div>
+</div>
+
+
+

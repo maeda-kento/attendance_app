@@ -20,7 +20,7 @@
         <th>名</th><td><%= current_staff.first_name %></td>
         </tr>
         <tr>
-        <th>生年月日</th><td><%= l current_staff.birthed_on, format: :long %></td>
+        <th>生年月日</th><td><%= l current_staff.birthed_on, format: :long %>(<%= current_staff.age %>歳)</td>
         </tr>
         <tr>
         <th>メールアドレス</th><td><%= current_staff.email %></td>
@@ -32,7 +32,18 @@
         <th>性別</th><td><%= current_staff.gender_i18n %></td>
         </tr>
         <tr>
-        <th>部署</th><td><%= current_staff.department.name %></td>
+        <th>部署</th>
+          <td>
+            <%= current_staff.departments.map(&:name).join(",")%>
+          </td>
+        </tr>
+        <tr>
+          <th>プロフィール画像</th>
+          <td>
+            <% if current_staff.image.attached? %>
+              <%= image_tag current_staff.image %>
+            <% end %>
+          </td>
         </tr>
       <tbody>
     </table>

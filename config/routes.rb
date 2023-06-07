@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 
   namespace :managers do
     get 'staffs/index'

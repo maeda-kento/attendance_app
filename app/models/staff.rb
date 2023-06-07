@@ -1,6 +1,9 @@
 class Staff < ApplicationRecord
-  belongs_to :department
   has_many :attendances, dependent: :destroy
+  has_many :staff_departments
+  has_many :departments, through: :staff_departments
+
+  has_one_attached :image
 
   has_secure_password
 
@@ -24,4 +27,9 @@ class Staff < ApplicationRecord
   scope :low_hourly_rate, -> {order(hourly_pay: :asc)}
 
   scope :ID, ->{order(id: :asc)}
+
+  def age
+    date_format = "%Y%m%d"
+    (Date.current.strftime(date_format).to_i - birthed_on.strftime(date_format).to_i) / 10000
+  end
 end

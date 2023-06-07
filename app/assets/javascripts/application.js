@@ -16,3 +16,10 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+
+//= require jquery.datetimepicker
+
+
+// datetimepickerクラスにdatetimepickerを適用する。
+jQuery('#datetimepicker').datetimepicker();

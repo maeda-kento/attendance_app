@@ -1,5 +1,10 @@
 <%= tag.tr id: dom_id(staff) do %>
   <td>
+    <% if staff.image.attached? %>
+      <%= image_tag staff.image %>
+    <% end %>
+  </td>
+  <td>
     <%= sprintf("%03d",staff.id) %>
   </td>
   <td>
@@ -7,6 +12,7 @@
   </td>
   <td>
     <%= staff.birthed_on %>
+    (<%= staff.age%>歳)
   </td>
   <td>
     <%= staff.email %>
@@ -18,7 +24,7 @@
     <%= staff.hourly_pay %>円
   </td>
   <td>
-    <%= staff.department.name %>
+    <%= staff.staff_departments.map{ |sd| sd.department.name }.join "、" %>
   </td>
   <td>
     <%= staff.zipcode %>

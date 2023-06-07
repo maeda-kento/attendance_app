@@ -4,7 +4,7 @@ class Managers::StaffsController < ApplicationController
   
   
     def index
-      @staffs = Staff.eager_load(:department)
+      @staffs = Staff.eager_load(staff_departments: :department,image_attachment: :blob)
       if params[:low_hourly_rate]
         @staffs = @staffs.low_hourly_rate
       elsif params[:high_hourly_wage]

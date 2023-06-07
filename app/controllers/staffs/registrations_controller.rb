@@ -11,7 +11,8 @@ class Staffs::RegistrationsController < ApplicationController
   end
 
   def update
-    if current_staff.update(post_params)
+    if current_staff.update(staff_params)
+      
       redirect_to staffs_registrations_path, success: "アカウントを更新しました"
     else
       
@@ -20,8 +21,8 @@ class Staffs::RegistrationsController < ApplicationController
     end
   end
 
-  def post_params
-    params.require(:staff).permit(:last_name, :first_name, :email, :birthed_on, :gender, :department_id, :hourly_pay)
+  def staff_params
+    params.require(:staff).permit(:last_name, :first_name, :email, :birthed_on, :gender, :hourly_pay, :image, department_ids: [])
   end
 
 end

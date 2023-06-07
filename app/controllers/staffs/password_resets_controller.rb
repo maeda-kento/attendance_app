@@ -45,5 +45,6 @@ class Staffs::PasswordResetsController < ApplicationController
   def staff_params
     params.require(:staff).permit(:password, :password_confirmation)
   end
+  
 end
 

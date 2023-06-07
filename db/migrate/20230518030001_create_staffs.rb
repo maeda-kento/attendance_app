@@ -1,7 +1,7 @@
 class CreateStaffs < ActiveRecord::Migration[5.1]
   def change
     create_table :staffs do |t|
-      t.references :department, foreign_key: true, null: false
+      
       t.string :last_name, null: false
       t.string :first_name, null: false
       t.string :email, null: false

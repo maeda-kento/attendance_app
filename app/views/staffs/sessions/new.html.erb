@@ -1,31 +1,24 @@
 <div class="container">
-  <%# <%= form_for(:session, url: staffs_sign_in_path) do |f| %>
-    <%#<%= f.label :email %>
-    <%#<%= f.email_field :email %>
-    <%#<%= f.label :password %>
-    <%#<%= f.password_field :password %>
-    <%#<%= f.submit "sign in" %>
-  <%#<% end %>
-    <div class="row">
-      <div class="col-12 col-lg-6 mx-auto">
-        <%= form_with url: staffs_sign_in_path, local: false, data: { remote: false } do |f| %>
-          <h1 class="text-center">スタッフログイン</h1>
-          <div class="mb-3">
-            <%= f.label :email, "メールアドレス", class: "form-label" %>
-            <%= f.email_field :email, class: "form-control", id: :email, placeholder: "name@example.com" %>
-          </div>
-          <div class="mb-3">
-            <%= f.label :password, "パスワード", class: "form-label" %>
-            <%= f.password_field :password, class: "form-control", id: :password %>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block" class="mw-100" >ログイン</button>
-        <% end %>
-        <%= link_to "パスワードを忘れた場合",('/staffs/password_resets/new'), class: "gray-500 h6 offset-md-3" %>
-      </div>
+  <div class="row">
+    <div class="col-12 col-lg-6 mx-auto">
+      <%= form_with url: staffs_sign_in_path, local: false, data: { remote: false } do |f| %>
+        <h1 class="text-center">スタッフログイン</h1>
+        <div class="mb-3">
+          <%= f.label :email, "メールアドレス", class: "form-label" %>
+          <%= f.email_field :email, class: "form-control", id: :email, placeholder: "name@example.com" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :password, "パスワード", class: "form-label" %>
+          <%= f.password_field :password, class: "form-control", id: :password %>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" class="mw-100" >ログイン</button>
+      <% end %>
+      <%= link_to "パスワードを忘れた場合",('/staffs/password_resets/new'), class: "offset-md-8" %>
     </div>
+  </div>
   
 <%# <%= tag.div class: ["border col-5", true ? 1 : 2], id: @id %>
 
   <%# <div class="border col-5 <%= true ? 1 : 2" id="<%= @id"> %>
   <%# </div> %>
-  </div>
+</div>
