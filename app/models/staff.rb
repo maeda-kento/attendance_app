@@ -22,14 +22,10 @@ class Staff < ApplicationRecord
   validates :gender, inclusion: { in: Staff.genders.keys }
   validates :reset_password_token, presence: true, uniqueness: true, allow_blank: true
 
-  scope :high_hourly_wage, -> {order(hourly_pay: :desc)}
-
-  scope :low_hourly_rate, -> {order(hourly_pay: :asc)}
-
-  scope :ID, ->{order(id: :asc)}
 
   def age
     date_format = "%Y%m%d"
     (Date.current.strftime(date_format).to_i - birthed_on.strftime(date_format).to_i) / 10000
   end
+
 end

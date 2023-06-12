@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   get    'staffs/sign_in',   to: 'staffs/sessions#new'
   post   'staffs/sign_in',   to: 'staffs/sessions#create'
   delete 'staffs/sign_out',  to: 'staffs/sessions#destroy'
-  
 
   namespace :staffs do
     resources :tops, only: :index
