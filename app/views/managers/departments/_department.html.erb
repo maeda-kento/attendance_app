@@ -1,0 +1,11 @@
+<%= tag.tr id: dom_id(department) do %>
+  <td>
+    <%= sprintf("%03d",department.id) %>
+  </td>
+  <td>
+    <%= link_to "#{department.name}",edit_managers_department_path(department), remote: true %>
+  </td>
+  <td>
+    <%= simple_format(department.description) %>
+  </td>
+<% end %>

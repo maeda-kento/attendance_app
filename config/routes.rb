@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   namespace :managers do
     resources :tops, only: :index
     resources :sessions, only: [:create, :new]
+    resources :departments, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :staffs, only: [:index, :edit, :show, :update, :destroy] do
       scope module: :staffs do
         resources :attendances, only: [:index] do

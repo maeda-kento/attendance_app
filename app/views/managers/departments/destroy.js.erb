@@ -1,0 +1,4 @@
+<% if @department.destroy %>
+  $('#<%= dom_id(@department) %>').remove();
+  $('#open-department-edit-modal').trigger("click");
+<% end %>

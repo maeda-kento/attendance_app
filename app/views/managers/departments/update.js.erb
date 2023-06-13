@@ -1,0 +1,6 @@
+<% if @department.invalid? %>
+  $('#department-edit-Modal .modal-body').html('<%= j(render 'managers/departments/edit')%>');
+<% else %>
+  $('#<%= dom_id(@department) %>').replaceWith('<%= j(render 'department', staff: @department) %>')
+  $('#department-edit-Modal').trigger("click");
+<% end %>
