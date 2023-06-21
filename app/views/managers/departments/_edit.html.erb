@@ -1,12 +1,22 @@
 <%= form_with model: @department, url: managers_department_path(@department), method: :patch do |f| %>
   <%= f.label :name %><span>:</span>
   <%= f.text_field :name, class: "form-control" %>
+  <%# <% if @department.errors.any? %>
+    <%# <ul> %>
+    <%# @department.errors.full_message.each do |message|%>
+      <%# <li> %>
+        <%#= message %>
+      <%# </li> %>
+    <%# end %>
+    <%# </ul> %>
+  <%# end %>
+  <%# エラーメソッドについて調べる、staffsの_editを参考に考えてみるといい%>
   <%= f.label :description %><span>:</span>
   <%= f.text_area :description, class: "form-control" %>
   <div class = "offset-4">
     <%= f.submit "新規追加", class: "btn btn-success col-6 mt-4" %>
   </div>
   <div class = "text-right">
-  <%= link_to "消去", managers_department_path(@department) ,method: :delete, remote: true, class: "btn btn-outline-dark" %>
+    <%= link_to "消去", managers_department_path(@department) ,method: :delete, remote: true, class: "btn btn-outline-dark" %>
   <div>
 <% end %>

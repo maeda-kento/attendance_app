@@ -19,7 +19,8 @@ gem 'jbuilder',     '2.6.4'
 gem 'coffee-script-source', '1.8.0'
 gem 'bootstrap',    '~> 4.3.1'
 gem 'bootsnap', require: false
-gem "font-awesome-sass"
+gem 'font-awesome-sass'
+gem 'acts_as_list'
 
 
 group :development, :test do

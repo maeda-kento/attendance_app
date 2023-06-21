@@ -3,7 +3,7 @@ class Managers::DepartmentsController < ApplicationController
 
 
   def index
-    @departments = Department.where(params[:department_id])
+    @departments = Department.where(params[:department_id]).order(:position)
   end
 
   def new
@@ -20,7 +20,7 @@ class Managers::DepartmentsController < ApplicationController
   end
 
   def edit
-
+    
   end
 
   def update
@@ -29,6 +29,13 @@ class Managers::DepartmentsController < ApplicationController
 
   def destroy
     
+  end
+
+  def sort
+    sort_string = params[:sorted_id]
+    sort_array = sort_string.split(",")
+    Department.sorted(sort_array)
+    head :ok
   end
 
   private

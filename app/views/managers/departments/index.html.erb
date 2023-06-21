@@ -1,10 +1,69 @@
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
+<script>
+  $(function() {
+    function fixPlaceHolderWidth(event, ui){
+        // adjust placeholder td width to original td width
+        ui.children().each(function(){
+            $(this).width($(this).width());
+        });
+        return ui;
+    };
+    $( '#sort-table' ).sortable({
+      axis:"y",
+      placeholder: 'ui-state-highlight',
+        start: function(event, ui){
+            ui.placeholder.height(ui.helper.outerHeight());
+        },
+      helper: fixPlaceHolderWidth,
+      update: function(){
+        var sortIdArray = $('#sort-table').sortable("toArray");
+        var sortIdString = sortIdArray.toString();
+        var tsortIdString = sortIdString.replaceAll('department_','');
+        // .replaceAll(',','')
+        // var tsortIdArray = Array.from(tsortIdString);
+        console.log(sortIdArray);
+        console.log(tsortIdString);
+        // console.log(tsortIdArray);
+        $.ajax({
+          url: '/managers/departments/sort',
+          type: 'post',
+          data: {
+            _method: 'patch',
+            sorted_id: `${tsortIdString}`
+            // from: oldIndex,
+            // to: newIndex
+            }
+        });
+        }
+      });
+  });
+  //     $(function() {
+            // var el, sortable;
+            // el = document.getElementById("#sort-table");
+            // console.log(el);
+            // if (el !== null) {
+            //   return sortable = Sortable.create(el, {
+            // //     delay: 200,
+            //     onUpdate: function(evt) {
+            //       return 
+  // }
+          //   });
+          // }
+  // }
+    // })
+</script>
+
 <div class="container-fluid">
   <div class="row">
     <div class = " text-left col-4 mt-4">
       <%= link_to "< トップへ", (" /managers/tops "), class: "btn btn-outline-dark"%>
     </div>
     <div class = " text-center col-4 mt-4">
-      <h2>スタッフ一覧</h2>
+      <h2>部署一覧</h2>
     </div>
     <button type="button" class="btn btn-dark d-none" id="open-department-modal"  data-toggle="modal" data-target="#departmentModal"></button>
     <div class= " text-right offset-3 mt-4">
@@ -35,7 +94,7 @@
             <th>説明</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id = "sort-table">
           <%= render partial: "department", collection: @departments %>
         </tbody>
       </table>

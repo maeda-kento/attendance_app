@@ -1,4 +1,10 @@
-<%= tag.tr id: dom_id(department) do %>
+<%# positionカラムを用いてDBに保存するのか否か
+  結局エラーメッセージが出来なかったこと
+  エラーメソッドの取り方が間違っているのかそれともrender自体が間違っているのかを聞く
+  セキュリティ面の記事はすべて読み終えた。%>
+
+
+<%= tag.tr id: dom_id(department),class: "ui-sortable-handle" do %>
   <td>
     <%= sprintf("%03d",department.id) %>
   </td>
@@ -6,6 +12,6 @@
     <%= link_to "#{department.name}",edit_managers_department_path(department), remote: true %>
   </td>
   <td>
-    <%= simple_format(department.description) %>
+    <%= safe_join(department.description.split("\n"),tag(:br))%>
   </td>
 <% end %>

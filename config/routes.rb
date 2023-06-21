@@ -31,7 +31,9 @@ Rails.application.routes.draw do
   namespace :managers do
     resources :tops, only: :index
     resources :sessions, only: [:create, :new]
-    resources :departments, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :departments, only: [:index, :new, :create, :edit, :update, :destroy] do
+      patch :sort, on: :collection
+    end
     resources :staffs, only: [:index, :edit, :show, :update, :destroy] do
       scope module: :staffs do
         resources :attendances, only: [:index] do
@@ -40,6 +42,7 @@ Rails.application.routes.draw do
         end
       end
     end
+    
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
