@@ -9,9 +9,20 @@
   </head>
 
   <body>
-  <h1 class="text-white p-3 bg-dark md-10 px-3">勤怠アプリ</h1>
-  <%= render 'shared/flash_message' %>
-    <%= yield %>
-  <%= tag.div(debug(params), class: "debug border border-3 p-3") if Rails.env.development? %>
+    <header>
+      <h1 class="text-white p-3 bg-dark ">勤怠アプリ</h1>
+    </header>
+    <div class= "container-fluid">
+        <%= render 'shared/flash_message' %>
+      <div class= "row">
+      <div class="col-md-2">
+            <%= render 'shared/sidebar' %>
+        </div>
+        <div class="col-md-10 right-contents">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <%= tag.div(debug(params), class: "debug border border-3 p-3") if Rails.env.development? %>
   </body>
 </html>

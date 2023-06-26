@@ -1,5 +1,6 @@
-<div class="container">
-  <div class="row">
+<%# <div class= "d-flex">
+  <div class="container">
+  <div class="row"> %>
     <div class="col-12 col-lg-6 mx-auto">
       <%= form_with url: managers_sessions_path, local: false, data: { remote: false } do |f| %>
         <h1 class="text-center">社員ログイン</h1>
@@ -14,5 +15,6 @@
         <button type="submit" class="btn btn-primary btn-block" class="mw-100" >ログイン</button>
       <% end %>
     </div>
+  </div>
   </div>
 </div>
