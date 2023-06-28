@@ -19,62 +19,59 @@
     </div>
   </div>
 </div>
-<%# <div class= "d-flex">
-  <div class="container-fluid">%>
-    <div class="row">
-      <div class = " text-center offset-4 col-4 mt-4">
-        <h2>スタッフ一覧</h2>
-      </div>
-      <div class="col-12">
-        <details>
-          <summary>キーワード検索</summary>
-          <%= form_with url: managers_staffs_path, local: :true, method: :get do |f| %>
-            <div class = "col-5">
-            <%= f.label :keyword, "あいまい検索",class: "form-label" %><span>:</span>
-            <%= f.search_field :keyword, class: "form-control" ,placeholder: "キーワードを入力してください。(名前の一部やメールアドレスの一部など)" , value: params[:keyword] %>
-            </div>
-            <%= f.label :department, "部署検索" %><span>:</span>
-            <%= f.collection_check_boxes(:department_ids, Department.all, :id, :name, {checked: params[:department_ids] || Department.all.ids}) do |department| %>
-              <ul>
-                <li>
-                  <%= department.check_box%>
-                  <%= department.text%>
-                </li>
-              </ul>
-            <% end %>
-            <%= f.label :sort ,"並び替え"%><span>:</span>
-            <%= f.select :sort, [ ["", 'id'], ["時給昇順", 'high_hourly_wage'], ["時給降順", 'low_hourly_rate'] ] %>
-            <div class = "col-3">
-            <%= f.submit "検索", class: "btn btn-success col-6 mt-4" %>
-            </div>
-          <% end %>
-        </details>
-        <div class= "text_rlgth">
-        <%= link_to "csvで出力する",managers_staffs_index_path(keyword: params[:keyword], department_ids: params[:department_ids], format: :csv), class: "btn btn-outline-dark"%>
+
+<div class="row">
+  <div class = " text-center offset-4 col-4 mt-4">
+    <h2>スタッフ一覧</h2>
+  </div>
+  <div class="col-12">
+    <details>
+      <summary>キーワード検索</summary>
+      <%= form_with url: managers_staffs_path, local: :true, method: :get do |f| %>
+        <div class = "col-5">
+        <%= f.label :keyword, "あいまい検索",class: "form-label" %><span>:</span>
+        <%= f.search_field :keyword, class: "form-control" ,placeholder: "キーワードを入力してください。(名前の一部やメールアドレスの一部など)" , value: params[:keyword] %>
         </div>
-      </div>
-      <div class="col-12">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>プロフィール画像</th>
-              <th>スタッフID</th>
-              <th>名前</th>
-              <th>生年月日</th>
-              <th>メールアドレス</th>
-              <th>性別</th>
-              <th>時給</th>
-              <th>部署</th>
-              <th>郵便番号</th>
-              <th>住所</th>
-              <th>勤怠</th>
-            </tr>
-          </thead>
-          <tbody>
-              <%= render partial: "staff", collection: @staffs %>
-          </tbody>
-        </table>
-      </div>
+        <%= f.label :department, "部署検索" %><span>:</span>
+        <%= f.collection_check_boxes(:department_ids, Department.all, :id, :name, {checked: params[:department_ids] || Department.all.ids}) do |department| %>
+          <ul>
+            <li>
+              <%= department.check_box%>
+              <%= department.text%>
+            </li>
+          </ul>
+        <% end %>
+        <%= f.label :sort ,"並び替え"%><span>:</span>
+        <%= f.select :sort, [ ["", 'id'], ["時給昇順", 'high_hourly_wage'], ["時給降順", 'low_hourly_rate'] ] %>
+        <div class = "col-3">
+        <%= f.submit "検索", class: "btn btn-success col-6 mt-4" %>
+        </div>
+      <% end %>
+    </details>
+    <div class= "text_rlgth">
+    <%= link_to "csvで出力する",managers_staffs_index_path(keyword: params[:keyword], department_ids: params[:department_ids], format: :csv), class: "btn btn-outline-dark"%>
     </div>
+  </div>
+  <div class="col-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>プロフィール画像</th>
+          <th>スタッフID</th>
+          <th>名前</th>
+          <th>生年月日</th>
+          <th>メールアドレス</th>
+          <th>性別</th>
+          <th>時給</th>
+          <th>部署</th>
+          <th>郵便番号</th>
+          <th>住所</th>
+          <th>勤怠</th>
+        </tr>
+      </thead>
+      <tbody>
+          <%= render partial: "staff", collection: @staffs %>
+      </tbody>
+    </table>
   </div>
 </div>
