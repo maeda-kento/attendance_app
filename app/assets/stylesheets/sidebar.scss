@@ -1,0 +1,39 @@
+header {
+  z-index: 100;
+}
+
+.side_bar {
+  background-color: #343a40;
+  width: 250px;
+  height: 100%;
+  top: 80px;
+  // left: -350px;
+  position: fixed;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    top: 20px;
+    left: 60px;
+    position: absolute;
+
+    li {
+      margin: 20px auto;
+      list-style: none;
+    }
+  }
+
+  button {
+    color: aliceblue;
+    background-color: #343a40;
+    display: block;
+    position: absolute;
+    top: 150px;
+    left: 250px;
+    width: 52px;
+    height: 125px;
+    margin: 0;
+    padding: 0;
+    border-radius: 0 5px 5px 0;
+  }
+}
