@@ -12,14 +12,16 @@
     <header class= "p-3 bg-dark  w-100 position-fixed ">
       <h1 class="text-white m-0">勤怠アプリ</h1>
     </header>
-    <div class= "side_bar">
-      <ul>
-        <li><%= link_to "トップ", managers_tops_path, class: 'text-light' %></li>
-        <li><%= link_to "部署一覧", managers_departments_path, method: :get, class: 'text-light' %></li>
-        <li><%= link_to "スタッフ一覧", managers_staffs_path, class: 'text-light' %></li>
-      </ul>
-      <button>close</button>
-    </div>
+    <%= form_with url: managers_sidebars_path, remote: true, method: :patch do |f|%>
+      <div class= "side_bar position-fixed">
+        <ul>
+          <li><%= link_to "トップ", managers_tops_path, class: 'text-light' %></li>
+          <li><%= link_to "部署一覧", managers_departments_path, method: :get, class: 'text-light' %></li>
+          <li><%= link_to "スタッフ一覧", managers_staffs_path, class: 'text-light' %></li>
+        </ul>
+        <button>close</button>
+      </div>
+    <% end %>
     <div class= "pt-5 container-fluid ">
       <div class= "pt-3 row">
         <div class="offset-2 col-md-10 right-contents pt-4">

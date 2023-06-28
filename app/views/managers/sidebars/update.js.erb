@@ -1,0 +1,14 @@
+$(function(){
+  var duration = 300;
+  var side_bar = $('.side_bar');
+  var side_barButton = side_bar.find('button')
+  .on('click', function(){
+    side_bar.toggleClass('open');
+    if(side_bar.hasClass('open')){
+      side_bar.stop(true).animate({left: '-250px'}, duration);
+      }
+    else{
+      side_bar.stop(true).animate({left: '0px'}, duration);
+    };
+  });
+});

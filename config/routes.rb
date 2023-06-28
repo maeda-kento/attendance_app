@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   namespace :managers do
     resources :tops, only: :index
     resources :sessions, only: [:create, :new]
+    resource :sidebars, only:[:update]
     resources :departments, only: [:index, :new, :create, :edit, :update, :destroy] do
       patch :sort, on: :collection
     end
