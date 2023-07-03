@@ -15,10 +15,10 @@ $("#zipcode-btn").click(function () {
               //該当する住所を表示
               var html = '';
               for (var i = 0; i < res.results.length; i++) {
-                  var result = res.results[i];
-                  console.log(res.results);
-                  html += result.address1 + result.address2 + result.address3;
-                }
+                var result = res.results[i];
+                console.log(res.results);
+                html += result.address1 + result.address2 + result.address3;
+              }
               console.log(html)
               $('#staff_adress').val(html);
           } else {

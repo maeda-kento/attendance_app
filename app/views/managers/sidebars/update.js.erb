@@ -1,20 +1,12 @@
-$(function(){
-  var duration = 300;
-  var side_bar = $('.side_bar');
-  var closeHtml = "close";
-  var openHtml = "open";
-  var side_barButton = side_bar.find('button')
-  .on('click', function(){
-    side_bar.toggleClass('open');
-    if(side_bar.hasClass('open')){
-      side_bar.stop(true).animate({left: '-250px'}, duration);
-      (side_barButton).html(openHtml);
-      console.log('a');
-      }
-    else{
-      side_bar.stop(true).animate({left: '0px'}, duration);
-      (side_barButton).html(closeHtml);
-      console.log('b');
-    };
-  });
-});
+var duration = 300;
+var side_bar = $('.side_bar');
+var closeHtml = "open";
+var openHtml = "close";
+var side_barButton =side_bar.find('button');
+<% if session[:sidebar] == "open" %>
+  side_bar.stop(true).animate({left: '-250px'}, duration);
+  (side_barButton).html(closeHtml);
+<% elsif session[:sidebar] == "close"%>
+  side_bar.stop(true).animate({left: '0px'}, duration);
+  (side_barButton).html(openHtml);
+<% end %>

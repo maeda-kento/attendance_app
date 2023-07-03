@@ -12,14 +12,41 @@
     <header class= "p-3 bg-dark  w-100 position-fixed ">
       <h1 class="text-white m-0">勤怠アプリ</h1>
     </header>
-    <%= form_with url: managers_sidebars_path, remote: true, method: :patch do |f|%>
-      <div class= "side_bar position-fixed">
+    <%#= form_with url: managers_sidebars_path, method: :patch do |f| %>
+      <%# <div class="side_bar position-fixed <%= session[:sidebar] == 'open' ? 'open' : 'close' %>
+      <%# "> %>
+        <%# <ul> %>
+          <%# <li><%= link_to "トップ", managers_tops_path, class: 'text-light' %>
+          <%# </li>  %>
+          <%# <li><%= link_to "部署一覧", managers_departments_path, method: :get, class: 'text-light' %>
+          <%# </li>  %>
+          <%# <li><%= link_to "スタッフ一覧", managers_staffs_path, class: 'text-light' %>
+          <%# </li>  %>
+        <%# </ul> %>
+        <%# <button type="submit" name="sidebar_status" id="btn" class="<%= session[:sidebar] == 'open' ? 'open' : 'close' %>
+        <%# "> %>
+          <%# if session[:sidebar] == "open" %>
+            <%# close %>
+          <%# else %>
+            <%# open %>
+          <%# end %>
+        <%# </button> %>
+      <%# </div> %>
+    <%# end %>
+    <%= form_with url: managers_sidebars_path, method: :patch do |f| %>
+      <div class="side_bar position-fixed <%= session[:sidebar] == 'open' ? 'close' : 'open' %>">
         <ul>
           <li><%= link_to "トップ", managers_tops_path, class: 'text-light' %></li>
           <li><%= link_to "部署一覧", managers_departments_path, method: :get, class: 'text-light' %></li>
           <li><%= link_to "スタッフ一覧", managers_staffs_path, class: 'text-light' %></li>
         </ul>
-        <button>close</button>
+        <button type="submit" name="sidebar_status" id="btn" class="<%= session[:sidebar] == 'open' ? 'close' : 'open' %>">
+          <% if session[:sidebar] == "open" %>
+            close
+          <% else %>
+            open
+          <% end %>
+        </button>
       </div>
     <% end %>
     <div class= "pt-5 container-fluid ">
